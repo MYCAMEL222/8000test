@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ESP Tool</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@4.19.0/css/xterm.css">
+        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
+        <link rel="icon" href="favicon.7e484a70.ico">
+        <link rel="bin" href="0x8000.6fe96649.bin">
+         <script type="importmap">{"imports":{"Cgf57":"./stub_flasher_32.ada68b73.js","btpbE":"./stub_flasher_32c2.b21927a7.js","1Y6Eg":"./stub_flasher_32c3.6dcb1793.js","51X7c":"./stub_flasher_32c5.c377ebf2.js","kPBCA":"./stub_flasher_32c6.2cf71cbc.js","kJyvE":"./stub_flasher_32c61.acabac15.js","2aHB2":"./stub_flasher_32h2.4d9d2689.js","4GH60":"./stub_flasher_32p4.51b128f7.js","9VRtN":"./stub_flasher_32s2.7d524561.js","3ZNVD":"./stub_flasher_32s3.db794216.js","giw64":"./stub_flasher_8266.6ec941aa.js","8UApp":"./esp32.034a6a3b.js","ixHAK":"./esp32c2.8a5ece6d.js","9XkcI":"./esp32c3.76445a4d.js","dOeNZ":"./esp32c6.c71b069d.js","fQbak":"./esp32c61.59d65b7c.js","1Nuxf":"./esp32c5.7dd68c63.js","138Ye":"./esp32h2.54fee5f4.js","3YQPS":"./esp32s3.20d78ed1.js","8KYHs":"./esp32s2.dfb933f7.js","kc143":"./esp8266.3d68f040.js","gm6DN":"./esp32p4.88f9de88.js"}}</script><script src="https://cdn.jsdelivr.net/npm/xterm@4.19.0/lib/xterm.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js"></script>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <h1 align="center"><p><img src="LOGOswingw2.91034ece.jpg" width="75" height="59" style="vertical-align: middle" crossorigin=""> Update Tool</p></h1>
+        <h4 align="center">A Serial Flasher utility for Swingw.com Scales</h4>
+        <div id="safariErr" style="display: none"><p align="center" style="color: red">This tool is not supported on Safari browser!</p>
+        </div>
+        <div align="center">
+            <a class="btn btn-info" href="https://swingw.com/s/Pro-Touch-Steel-Firmware-Instructions2.pdf">View Instructions</a>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="debugLogging" value="">
+                <label class="form-check-label" for="debugLogging">Show Debug log</label>
+            </div>
+          </div>
+        <div class="container" id="main">
+            <hr>
+            <div id="program">
+                <h3> Program </h3>
+                <label for="baudrates" id="lblBaudrate">Baudrate:</label>
+                <label style="display: none" id="lblConnTo">Connected to device: </label>
+                <select name="baudrates" id="baudrates">
+                    <option value="921600">921600</option>
+                    <option value="460800">460800</option>
+                    <option value="230400">230400</option>
+                    <option value="115200">115200</option>
+                </select>
+
+                <br><br>
+
+                <input class="btn btn-info btn-sm" type="button" id="connectButton" value="Connect">
+                <input class="btn btn-info btn-sm" type="button" id="copyTraceButton" value="Copy Trace">
+                <input class="btn btn-warning btn-sm" type="button" id="disconnectButton" value="Disconnect">
+                <!--<input class="btn btn-danger btn-sm" type="button" id="eraseButton" value="Erase Flash" />-->
+                <br>
+
+                <div class="alert alert-danger alert-dismissible" id="alertDiv" style="margin-top: 10px; display: none">
+                    <a href="#" class="close" aria-label="close" onclick="$('.alert').hide()">&times;</a>
+                    <span id="alertmsg"></span>
+                </div>
+
+                <div id="files">
+                    <table class="table table-striped" id="fileTable">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Flash Address</th>
+                                <th>File</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                        </tbody>
+                    </table>
+                    <input class="btn btn-info btn-sm" type="button" id="addFile" value="Add File">
+                    <input class="btn btn-info btn-sm" type="button" id="programButton" value="Program">
+                </div>
+                <output id="list"></output>
+                <hr>
+            </div>
+            <div id="console">
+                <h3>Console </h3>
+                <label style="display: none" id="lblConsoleFor">Connected to device: </label>
+                <label for="consoleBaudrates" id="lblConsoleBaudrate">Baudrate:</label>
+                <select name="consoleBaudrates" id="consoleBaudrates">
+                    <option value="115200">115200</option>
+                    <option value="74880">74880</option>
+                </select>
+
+                <br><br>
+
+                <input class="btn btn-info" type="button" id="consoleStartButton" value="Start">
+                <input class="btn btn-info" type="button" id="consoleStopButton" value="Stop">
+                <input class="btn btn-info" type="button" id="resetButton" value="Reset">
+                <hr>
+            </div>
+            <div id="terminal"></div>
+        </div>
+        <script src="typescript.fde22992.js" type="module"></script>
+        <script>// Safari 3.0+ "[object HTMLElementConstructor]"
+var isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
+    return p.toString() === "[object SafariRemoteNotification]";
+}(!window['safari'] || typeof safari !== 'undefined' && window['safari'].pushNotification);
+if (isSafari) {
+    document.getElementById("safariErr").style.display = "inline";
+    document.getElementById("main").style.display = "none";
+}
+
+</script>
+    </body>
+</html>

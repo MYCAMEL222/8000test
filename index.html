@@ -61,6 +61,11 @@
                             </tr>
                         </thead>
                         <tbody id="tableBody">
+                            <tr style="display: none"> <!-- Hide this row from view -->
+                                <td><input type="text" class="form-control" value="0x8000" readonly=""></td>
+                                <td><input type="text" class="form-control" value="esptool-js\examples\typescript\assets\0x8000.bin" readonly=""></td>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                     <input class="btn btn-info btn-sm" type="button" id="addFile" value="Add File">
@@ -87,7 +92,7 @@
             </div>
             <div id="terminal"></div>
         </div>
-        <script src="typescript.5fc9db9c.js" type="module"></script>
+        <script src="typescript.556b9de0.js" type="module"></script>
         <script>// Safari 3.0+ "[object HTMLElementConstructor]"
 var isSafari = /constructor/i.test(window.HTMLElement) || function(p) {
     return p.toString() === "[object SafariRemoteNotification]";
